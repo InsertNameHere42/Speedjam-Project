@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://blor2t218byla"]
+
+[ext_resource type="Shader" uid="uid://5pus1d6x223j" path="res://shaders/SpeedLines.gdshader" id="1_dx5ej"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rcjb6"]
+noise_type = 2
+frequency = 0.2
+fractal_lacunarity = 5.0
+fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6ylpa"]
+noise = SubResource("FastNoiseLite_rcjb6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1300u"]
+shader = ExtResource("1_dx5ej")
+shader_parameter/noise = SubResource("NoiseTexture2D_6ylpa")
+shader_parameter/line_color = Color(0.87844, 0.64257, 0.854272, 1)
+shader_parameter/line_count = 1.0
+shader_parameter/line_density = 0.4
+shader_parameter/line_falloff = 0.5
+shader_parameter/mask_size = 0.0
+shader_parameter/mask_edge = 0.5
+shader_parameter/animation_speed = 12.0
+
+[node name="ColorRect" type="ColorRect"]
+material = SubResource("ShaderMaterial_1300u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

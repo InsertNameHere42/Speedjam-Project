@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://co6lfu66hvvmv"]
+
+[ext_resource type="Script" uid="uid://bq20pjofchayg" path="res://scripts/playerScript.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://ddhanv8qw4sy0" path="res://scripts/cameraShake.gd" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://blor2t218byla" path="res://scenes/speedlines.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bf4p6582qmwho" path="res://scenes/arms_anim.tscn" id="4_dqkch"]
+
+[sub_resource type="Curve" id="Curve_qhqgy"]
+_limits = [0.0, 1.0, 0.0, 90.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(38.8636, 0.505618), 0.0050223, 0.0050223, 0, 0, Vector2(65.9659, 0.696629), 0.00732418, 0.00732418, 0, 0, Vector2(90, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_3vyb7"]
+_limits = [10.0, 30.0, 0.0, 120.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(36, 20), 0.0, 0.0, 0, 0, Vector2(120, 30), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_g2els"]
+_limits = [85.0, 110.0, 0.0, 40.0]
+_data = [Vector2(0, 85), 0.0, 0.0, 0, 0, Vector2(9.77273, 90.618), 0.487877, 0.487877, 0, 0, Vector2(21.1364, 95.6742), 0.589943, 0.589943, 0, 0, Vector2(28.6364, 102.697), 1.33895, 1.33895, 0, 0, Vector2(40, 110), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_dqkch"]
+_limits = [0.0, 0.15, 0.0, 40.0]
+_data = [Vector2(21.5909, 0), 0.0, 0.0, 0, 0, Vector2(26.3636, 0.0808989), 0.00359551, 0.00359551, 0, 0, Vector2(40, 0.0994382), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qlg0r"]
+_limits = [0.0, 0.5, 0.0, 40.0]
+_data = [Vector2(14.878, 0), 0.0, 0.0, 0, 0, Vector2(40, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tuyoq"]
+_limits = [0.0, 1.0, 0.0, 80.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(80, 0), -0.0174498, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
+
+[node name="Player" type="CharacterBody3D"]
+floor_stop_on_slope = false
+floor_max_angle = 1.48353
+floor_snap_length = 1.0
+script = ExtResource("1_3vyb7")
+acceleration = 80.0
+maxWalkSpeed = 20.0
+deceleration = 40.0
+angleToAcceleration = SubResource("Curve_qhqgy")
+slidingMultiplier = 200.0
+jumpVelocity = 8.0
+coyoteTime = 0.2
+inputForward = "forward"
+inputLeft = "left"
+inputRight = "right"
+inputBack = "back"
+inputSlide = "slide"
+inputPunch = "punch"
+inputCharge = "charge"
+chargeVelocity = SubResource("Curve_3vyb7")
+dynamicFOV = SubResource("Curve_g2els")
+speedToShake = SubResource("Curve_dqkch")
+headbobFrequency = 1.0
+headbobAmplitude = 0.16
+speedlineDensityCurve = SubResource("Curve_qlg0r")
+speedlineFalloffCurve = SubResource("Curve_tuyoq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 512
+mesh = SubResource("CapsuleMesh_g2els")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_qhqgy")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+cull_mask = 1048063
+fov = 85.0
+script = ExtResource("2_g2els")
+
+[node name="ArmsAnim" parent="Head/Camera3D" instance=ExtResource("4_dqkch")]
+transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, -1.894, 0.3)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Speedlines" parent="." instance=ExtResource("3_qhqgy")]
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

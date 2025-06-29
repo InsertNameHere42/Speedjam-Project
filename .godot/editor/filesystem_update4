@@ -1,0 +1,11 @@
+res://scenes/arms_anim.tscn
+res://shaders/SpeedLines.gdshader
+res://materials/JacketSleeve.tres
+res://materials/ArmBase.tres
+res://materials/Gauntlet.tres
+res://materials/Outline.tres
+res://saveToFileAnims/BaseAnim.res
+res://scripts/playerScript.gd
+res://scenes/main.tscn
+res://scenes/player.tscn
+res://scripts/arms.gd

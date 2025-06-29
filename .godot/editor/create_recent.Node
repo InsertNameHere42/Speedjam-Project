@@ -1,0 +1,6 @@
+CollisionShape3D
+Area3D
+AnimationTree
+AnimationPlayer
+CSGBox3D
+ColorRect

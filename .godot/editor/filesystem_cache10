@@ -1,3 +1,39 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1751078584
-icon.svg::CompressedTexture2D::7028203702265300967::1751078578::1751078584::1::::<><><>0<>0<>d2cf17534c937f438d9f4f748101264d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://::1751176059
+icon.svg::CompressedTexture2D/CompressedTexture2D::7028203702265300967::1751078578::1751078584::1::::<><><>0<>0<>d2cf17534c937f438d9f4f748101264d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+README.md::TextFile/TextFile::-1::1751079626::0::1::::<><><>0<>0<><>::
+::res://assets/::1751174861
+ArmsAnim.blend::PackedScene/PackedScene::6820316622917347938::1751169074::1751173841::1::::<><><>0<>0<>b71b5456f57eda8399098675f0658f0f<>res://.godot/imported/ArmsAnim.blend-ddbb93a99d639e2887561e7e59315caf.scn::uid://do4q6tcro24ah::::res://materials/JacketSleeve.tres<>uid://cug8kvjhyo8bu::::res://materials/ArmBase.tres<>uid://bx41jhobtjph::::res://materials/Gauntlet.tres<>uid://btbvqksvs5pt6::::res://materials/Outline.tres
+ChargeHit.fbx::AnimationLibrary/AnimationLibrary::839441162858630750::1751169652::1751174861::1::::<><><>0<>0<>ed7c44378bf7953f6710aeaf0319d896<>res://.godot/imported/ChargeHit.fbx-8b3657831b4f6bc9df12a789cc6081ea.res::uid://dka8f6fo7ybgl::::res://saveToFileAnims/BaseAnim.res<>uid://umxtxssy3lgv::::res://saveToFileAnims/ChargeActiveAnim.res<>uid://b4fu78uk801om::::res://saveToFileAnims/chargeActiveStartAnim.res<>uid://bc83oo4w8k8dk::::res://saveToFileAnims/chargeHitAnim.res<>uid://0go2xf111iso::::res://saveToFileAnims/chargeHoldAnim.res<>uid://w0lrd88kn5jx::::res://saveToFileAnims/WindupAnim.res<>uid://pwayxrfbex6y::::res://saveToFileAnims/downAnim.res<>uid://dpr5ker7lw2xy::::res://saveToFileAnims/IdleAnim.res<>uid://baka8gdt5xmlb::::res://saveToFileAnims/jumpAnim.res<>uid://b7q8d4vgcsv64::::res://saveToFileAnims/punchAnim.res
+::res://MaterialPNGs/::1751167930
+Gauntlet.png::CompressedTexture2D/CompressedTexture2D::8408908972863434022::1751167694::1751167755::1::::<><><>0<>0<>7b3bfee021f1b73aa24ffdd05c1220ec<>res://.godot/imported/Gauntlet.png-9b2c405dbb91fcc3d1063a02aab0e117.s3tc.ctex::
+Jacket Sleeve.png::CompressedTexture2D/CompressedTexture2D::672030757912264197::1751167688::1751167742::1::::<><><>0<>0<>2dc47869df6c649b11a52dfe0fd5550f<>res://.godot/imported/Jacket Sleeve.png-7864c29ec0632e69a8812f537c9c01bd.s3tc.ctex::
+Player Arms Diffuse.png::CompressedTexture2D/CompressedTexture2D::6573328705621950402::1751167692::1751167700::1::::<><><>0<>0<>7ef43ea128d39208c5fc120c02a9d5aa<>res://.godot/imported/Player Arms Diffuse.png-24c073b8bc385003aa26ea841ee2c829.s3tc.ctex::
+::res://materials/::1751175471
+ArmBase.tres::StandardMaterial3D::6191027142615851978::1751175471::0::1::::<><><>0<>0<><>::uid://c0wf07q6ixax3::::res://MaterialPNGs/Player Arms Diffuse.png
+Gauntlet.tres::StandardMaterial3D::119477239575134161::1751175471::0::1::::<><><>0<>0<><>::uid://dr2lrctq2db2e::::res://MaterialPNGs/Gauntlet.png
+JacketSleeve.tres::StandardMaterial3D::8202800650200272467::1751175471::0::1::::<><><>0<>0<><>::uid://jtsipfbbthr6::::res://MaterialPNGs/Jacket Sleeve.png
+Outline.tres::StandardMaterial3D::3723377274139726225::1751175471::0::1::::<><><>0<>0<><>::
+::res://saveToFileAnims/::1751175471
+BaseAnim.res::Animation::7863164713818124699::1751175471::0::1::::<><><>0<>0<><>::
+ChargeActiveAnim.res::Animation/Animation::1429981063421742637::1751174861::0::1::::<><><>0<>0<><>::
+chargeActiveStartAnim.res::Animation/Animation::4433492287892734568::1751174861::0::1::::<><><>0<>0<><>::
+chargeHitAnim.res::Animation/Animation::2596648694935607764::1751174861::0::1::::<><><>0<>0<><>::
+chargeHoldAnim.res::Animation/Animation::1768006828787503874::1751174861::0::1::::<><><>0<>0<><>::
+downAnim.res::Animation/Animation::1098293058740945058::1751174861::0::1::::<><><>0<>0<><>::
+IdleAnim.res::Animation/Animation::8249028733015453618::1751174861::0::1::::<><><>0<>0<><>::
+jumpAnim.res::Animation/Animation::2407123713111355871::1751174861::0::1::::<><><>0<>0<><>::
+punchAnim.res::Animation/Animation::4667504298212166719::1751174861::0::1::::<><><>0<>0<><>::
+WindupAnim.res::Animation/Animation::1596462459366895657::1751174861::0::1::::<><><>0<>0<><>::
+::res://scenes/::1751176043
+arms_anim.tscn::PackedScene::2798199599181230420::1751176043::0::1::::<><><>0<>0<><>::uid://c4f2va1ntghyw::::res://assets/ArmsAnim.blend<>uid://bslpfltv0grt1::::res://scripts/arms.gd<>uid://dka8f6fo7ybgl::::res://saveToFileAnims/BaseAnim.res<>uid://umxtxssy3lgv::::res://saveToFileAnims/ChargeActiveAnim.res<>uid://b4fu78uk801om::::res://saveToFileAnims/chargeActiveStartAnim.res<>uid://bc83oo4w8k8dk::::res://saveToFileAnims/chargeHitAnim.res<>uid://0go2xf111iso::::res://saveToFileAnims/chargeHoldAnim.res<>uid://pwayxrfbex6y::::res://saveToFileAnims/downAnim.res<>uid://dpr5ker7lw2xy::::res://saveToFileAnims/IdleAnim.res<>uid://baka8gdt5xmlb::::res://saveToFileAnims/jumpAnim.res<>uid://b7q8d4vgcsv64::::res://saveToFileAnims/punchAnim.res<>uid://w0lrd88kn5jx::::res://saveToFileAnims/WindupAnim.res
+main.tscn::PackedScene::2814710692123245295::1751175893::0::1::::<><><>0<>0<><>::uid://co6lfu66hvvmv::::res://scenes/player.tscn
+player.tscn::PackedScene::5820158804359106489::1751175893::0::1::::<><><>0<>0<><>::uid://bq20pjofchayg::::res://scripts/playerScript.gd<>uid://ddhanv8qw4sy0::::res://scripts/cameraShake.gd<>uid://blor2t218byla::::res://scenes/speedlines.tscn<>uid://bf4p6582qmwho::::res://scenes/arms_anim.tscn
+speedlines.tscn::PackedScene/PackedScene::3188480698459615726::1751120384::0::1::::<><><>0<>0<><>::uid://5pus1d6x223j::::res://shaders/SpeedLines.gdshader
+::res://scripts/::1751176043
+arms.gd::GDScript::3673448316429306884::1751176043::0::1::::<>Node3D<><>0<>0<><>::
+cameraShake.gd::GDScript/GDScript::7384303596319008793::1751100334::0::1::::<>Camera3D<><>0<>0<><>::
+playerScript.gd::GDScript::3566725587556507054::1751175893::0::1::::<>CharacterBody3D<><>0<>0<><>::
+::res://shaders/::1751176043
+SpeedLines.gdshader::Shader::2137878831279329813::1751176043::0::1::::<><><>0<>0<><>::
+::res://temporary/::1750585150

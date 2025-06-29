@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cug8kvjhyo8bu"]
+
+[ext_resource type="Texture2D" uid="uid://c0wf07q6ixax3" path="res://MaterialPNGs/Player Arms Diffuse.png" id="1_4lhsx"]
+
+[resource]
+albedo_texture = ExtResource("1_4lhsx")
