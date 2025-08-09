@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0wf07q6ixax3"
 path.s3tc="res://.godot/imported/Player Arms Diffuse.png-24c073b8bc385003aa26ea841ee2c829.s3tc.ctex"
+path.etc2="res://.godot/imported/Player Arms Diffuse.png-24c073b8bc385003aa26ea841ee2c829.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://MaterialPNGs/Player Arms Diffuse.png"
-dest_files=["res://.godot/imported/Player Arms Diffuse.png-24c073b8bc385003aa26ea841ee2c829.s3tc.ctex"]
+dest_files=["res://.godot/imported/Player Arms Diffuse.png-24c073b8bc385003aa26ea841ee2c829.s3tc.ctex", "res://.godot/imported/Player Arms Diffuse.png-24c073b8bc385003aa26ea841ee2c829.etc2.ctex"]
 
 [params]
 

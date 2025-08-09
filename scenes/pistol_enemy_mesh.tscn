@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://dxgoxirvbvxf4"]
+
+[ext_resource type="PackedScene" uid="uid://kmqekctiuq4i" path="res://assets/Models/PistolEnemy.blend" id="1_auxue"]
+[ext_resource type="Script" uid="uid://bvrmo04ismltn" path="res://scripts/pistol_enemy_mesh.gd" id="2_bhfol"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_48jnt"]
+animation = &"Aiming"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhfol"]
+animation = &"Fire"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_48jnt"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_y042i"]
+graph_offset = Vector2(-201.545, 44.2727)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_bhfol")
+nodes/Animation/position = Vector2(-80, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_48jnt")
+nodes/TimeScale/position = Vector2(120, 120)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kgdo2"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u5n12"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ngmi4"]
+advance_mode = 2
+advance_condition = &"isAiming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u41ru"]
+advance_mode = 2
+advance_condition = &"notAiming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kgdo2"]
+advance_mode = 2
+advance_condition = &"isFiring"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oa8cn"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sk38q"]
+states/Aiming/node = SubResource("AnimationNodeAnimation_48jnt")
+states/Aiming/position = Vector2(366, 16)
+states/Fire/node = SubResource("AnimationNodeBlendTree_y042i")
+states/Fire/position = Vector2(488, -50)
+states/Idle/node = SubResource("AnimationNodeAnimation_kgdo2")
+states/Idle/position = Vector2(366, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_u5n12"), "Idle", "Aiming", SubResource("AnimationNodeStateMachineTransition_ngmi4"), "Aiming", "Idle", SubResource("AnimationNodeStateMachineTransition_u41ru"), "Aiming", "Fire", SubResource("AnimationNodeStateMachineTransition_kgdo2"), "Fire", "Aiming", SubResource("AnimationNodeStateMachineTransition_oa8cn")]
+graph_offset = Vector2(-28, -99)
+
+[node name="PistolEnemyMesh" instance=ExtResource("1_auxue")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("2_bhfol")
+
+[node name="Skeleton3D" parent="metarig" index="0"]
+bones/1/rotation = Quaternion(-0.0644764, 0, 0, 0.997919)
+bones/2/rotation = Quaternion(-0.0774642, 0, 0, 0.996995)
+bones/3/rotation = Quaternion(0.00162715, 0, 0, 0.999999)
+bones/8/position = Vector3(0.0193389, 0.14526, 0.02787)
+bones/8/rotation = Quaternion(-0.281331, 0.214452, -0.77012, 0.530829)
+bones/9/rotation = Quaternion(-0.130361, 0.363391, -0.179142, 0.90491)
+bones/10/rotation = Quaternion(0.00734342, 0.0144783, -0.219721, 0.975428)
+bones/12/position = Vector3(-0.00778913, 0.20144, 0.0124306)
+bones/12/rotation = Quaternion(-0.0745679, -0.447809, 0.775328, 0.43906)
+bones/13/rotation = Quaternion(0.180513, 0.0105393, 0.126928, 0.975291)
+bones/14/rotation = Quaternion(-0.00919241, -0.0720736, 0.0608647, 0.995498)
+bones/23/rotation = Quaternion(1.20505e-08, 0.961249, -0.275683, -4.20175e-08)
+
+[node name="Gun" parent="metarig/Skeleton3D" index="0"]
+transform = Transform3D(0.85454, 0.617975, 0.572165, -0.218749, 1.28246, -0.701607, -0.53959, 0.458772, 1.19056, -0.829417, 0.157009, -0.551591)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_sk38q")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/isAiming = false
+parameters/conditions/isFiring = false
+parameters/conditions/notAiming = false
+parameters/Fire/TimeScale/scale = 2.0

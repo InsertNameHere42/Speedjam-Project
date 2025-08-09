@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0qo1a4ufgbim"]
+
+[ext_resource type="PackedScene" uid="uid://dxgoxirvbvxf4" path="res://scenes/pistol_enemy_mesh.tscn" id="1_gvlny"]
+[ext_resource type="Script" uid="uid://bix8bola5t852" path="res://scripts/pistol_enemy.gd" id="1_wsxd2"]
+[ext_resource type="AudioStream" uid="uid://dfbv0wfldubdk" path="res://assets/Sounds/FireSound.mp3" id="3_x007k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wsxd2"]
+radius = 0.832868
+height = 3.17793
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x007k"]
+radius = 0.685432
+height = 4.06842
+
+[node name="PistolEnemy" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_wsxd2")
+
+[node name="PistolEnemyMesh" parent="." instance=ExtResource("1_gvlny")]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="HBCollider" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35617, 0)
+shape = SubResource("CapsuleShape3D_wsxd2")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 1.34548, 0)
+shape = SubResource("CapsuleShape3D_x007k")
+disabled = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Gunshot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_x007k")
+volume_db = 9.143
+pitch_scale = 0.85
+bus = &"SFX"
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

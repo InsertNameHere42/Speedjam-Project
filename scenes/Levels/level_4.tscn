@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl07yf136nh3o"]
+
+[ext_resource type="PackedScene" uid="uid://dlfp6udyx66be" path="res://scenes/level_template.tscn" id="1_qqse0"]
+[ext_resource type="PackedScene" uid="uid://b0qo1a4ufgbim" path="res://scenes/pistol_enemy.tscn" id="2_1b8uj"]
+[ext_resource type="FontFile" uid="uid://k35kwvcbwer" path="res://assets/UI/High Speed.ttf" id="3_1b8uj"]
+
+[node name="Level4" type="Node3D"]
+
+[node name="LevelTemplate" parent="." instance=ExtResource("1_qqse0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422368, 0, 0.575538)
+numEnemies = 1
+levelNum = 3
+nextScene = "res://scenes/Levels/level_5.tscn"
+
+[node name="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.78, 14.3316, 0)
+size = Vector3(35, 42.3361, 35)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.389, -15.4614, 0)
+size = Vector3(60.525, 1, 35.3096)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.601, -9.95445, 0)
+size = Vector3(35.2917, 12.0138, 35.3096)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="3"]
+transform = Transform3D(0.66241, -0.74914, 0, 0.74914, 0.66241, 0, 0, 0, 1, 133.282, 0.753036, 0)
+size = Vector3(43.6077, 1, 35)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="4"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -3.56864, 19.9173, -0.0511952)
+size = Vector3(54.8523, 3.04408, 25.6694)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.93769, 45.7448, -0.0511952)
+size = Vector3(13.759, 3.04408, 25.6694)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="6"]
+transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 39.0623, 116.917, -0.0511954)
+size = Vector3(54.8523, 3.04408, 25.6694)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="7"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.4314, 142.745, -0.051195)
+size = Vector3(13.759, 3.04408, 25.6694)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="8"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 44.4314, 90.7448, -0.051195)
+size = Vector3(13.759, 3.04408, 46.8174)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="9"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 14.6417, 190.917, -30.4718)
+size = Vector3(54.8523, 3.04408, 25.6694)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="10"]
+transform = Transform3D(3.72315e-16, -4.37114e-08, -1, -0.707107, 0.707107, -3.09086e-08, 0.707107, 0.707107, -3.09086e-08, 14.6417, 188.721, -1.44089)
+size = Vector3(81, 3.04408, 25.6694)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="11"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.6417, 216.745, -35.8409)
+size = Vector3(13.759, 3.04408, 25.6694)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="12"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.6417, 164.745, -35.8409)
+size = Vector3(13.759, 3.04408, 46.8174)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="13"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 14.6417, 315.084, 52.3694)
+size = Vector3(75.1854, 3.04408, 25.6694)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="14"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.6417, 351.409, 83.6247)
+size = Vector3(65.5314, 3.04408, 25.6694)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="15"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.6417, 278.745, 57.7385)
+size = Vector3(13.759, 3.04408, 46.8174)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2726, -7.11954, 0)
+size = Vector3(43.6601, 1, 25.6143)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="LevelTemplate/CSGCombiner3D" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2726, 0.53793, -12.1656)
+size = Vector3(43.6601, 16.3149, 1.28309)
+
+[node name="PistolEnemy" parent="LevelTemplate" node_paths=PackedStringArray("target") instance=ExtResource("2_1b8uj")]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 14.6952, 352.936, 111.046)
+target = NodePath("../Player")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 154.361, 22.9676, -0.575538)
+billboard = 1
+modulate = Color(0.843137, 0.776471, 0.145098, 1)
+text = "I hope you know that you can
+punch walls to climb them."
+font = ExtResource("3_1b8uj")
+font_size = 64
+uppercase = true
+
+[editable path="LevelTemplate"]

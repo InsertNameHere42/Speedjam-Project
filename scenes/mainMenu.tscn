@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0a4hlqc3ado0"]
+
+[ext_resource type="Script" uid="uid://cc35wqckrf8n6" path="res://scripts/main_menu.gd" id="1_3d1i7"]
+[ext_resource type="FontFile" uid="uid://k35kwvcbwer" path="res://assets/UI/High Speed.ttf" id="1_qkhwq"]
+[ext_resource type="PackedScene" uid="uid://dmyn5oj2bitw8" path="res://scenes/background_scene.tscn" id="3_48ign"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d1i7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_48ign"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7wge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nrmo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clbkb"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_3d1i7")
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Background Scene" parent="Background" instance=ExtResource("3_48ign")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.2222e-08, 0.258819, 0.965926, 1.13133e-08, 0.965926, -0.258819, -1, -8.88178e-16, -4.37114e-08, 150.166, 21.9568, 2.87237)
+fov = 90.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.482776, 0.918697, 1)
+theme_override_fonts/font = ExtResource("1_qkhwq")
+theme_override_font_sizes/font_size = 64
+text = "Ultraviolet"
+
+[node name="Spacer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("1_qkhwq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3d1i7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_48ign")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l7wge")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7nrmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_clbkb")
+text = "Start Game
+"
+
+[node name="LeaderboardButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("1_qkhwq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3d1i7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_48ign")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l7wge")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7nrmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_clbkb")
+text = "Leaderboard"
+
+[node name="SettingsButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("1_qkhwq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3d1i7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_48ign")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l7wge")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7nrmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_clbkb")
+text = "Settings
+"
+
+[node name="CreditsButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("1_qkhwq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3d1i7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_48ign")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l7wge")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7nrmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_clbkb")
+text = "Credits
+"
+
+[node name="QuitButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("1_qkhwq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3d1i7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_48ign")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l7wge")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7nrmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_clbkb")
+text = "Quit
+"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

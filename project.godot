@@ -8,12 +8,31 @@
 
 config_version=5
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+
 [application]
 
 config/name="SpeedJam"
-run/main_scene="uid://bgdp4ygnd32n0"
+run/main_scene="uid://d0a4hlqc3ado0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/autoload/global.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg")
 
 [input]
 
@@ -61,8 +80,18 @@ jump={
 [layer_names]
 
 3d_render/layer_10="Player"
+3d_physics/layer_2="Enemies"
+3d_physics/layer_3="Player"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
-3d/default_gravity=20.0
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
+3d/default_gravity=25.0
+3d/size/viewport_height=648
+3d/size/viewport_width=1152
+
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true

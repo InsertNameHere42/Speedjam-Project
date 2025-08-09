@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc2mqu1swl5yy"]
+
+[ext_resource type="PackedScene" uid="uid://biecaorkmkq0k" path="res://assets/Models/Bullet.blend" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://mqhjvkmufli0" path="res://scripts/bullet.gd" id="1_y25gk"]
+
+[sub_resource type="Curve" id="Curve_y25gk"]
+_limits = [0.0, 100.0, 0.0, 3.0]
+_data = [Vector2(0, 21.3483), 0.0, 0.0, 0, 0, Vector2(0.765957, 73.0337), 49.8752, 49.8752, 0, 0, Vector2(2.28191, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y25gk"]
+radius = 0.392824
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_y25gk")
+bulletSpeed = SubResource("Curve_y25gk")
+
+[node name="Mesh" parent="." instance=ExtResource("1_mkf8s")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_y25gk")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

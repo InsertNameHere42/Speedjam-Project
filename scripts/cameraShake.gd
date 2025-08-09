@@ -15,9 +15,16 @@ func cameraShake(magnitude : float):
 
 		self.position = basePosition + offset
 		elapsed_time += get_process_delta_time()
-		await get_tree().process_frame
+		if !is_inside_tree():
+			return
+		if get_tree() != null:
+			await get_tree().process_frame
+		else:
+			await RenderingServer.frame_post_draw
 
 	resetPos()
+
+
 	
 func resetPos() -> void:
 	self.position = basePosition

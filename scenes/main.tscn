@@ -1,27 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgdp4ygnd32n0"]
 
 [ext_resource type="PackedScene" uid="uid://co6lfu66hvvmv" path="res://scenes/player.tscn" id="1_o5qli"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_o5qli"]
-sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
-
-[sub_resource type="Environment" id="Environment_0wfyh"]
-background_mode = 2
-sky = SubResource("Sky_o5qli")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://b0qo1a4ufgbim" path="res://scenes/pistol_enemy.tscn" id="2_0wfyh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
 albedo_color = Color(0.442911, 0.442911, 0.442911, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+size = Vector3(16.3721, 1, 6.1604)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
+size = Vector3(21.2539, 9.58374, 17.4436)
+
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0wfyh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -29,10 +22,11 @@ shadow_enabled = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
+collision_mask = 7
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.53, -0.5, -37.5747)
-size = Vector3(309.06, 1, 125.149)
+size = Vector3(500, 1, 500)
 material = SubResource("StandardMaterial3D_o5qli")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -59,6 +53,11 @@ size = Vector3(15, 1, 6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145.045, 27.1949, -44.8901)
 size = Vector3(16.3477, 1, 6)
 
+[node name="Area3D" type="Area3D" parent="CSGCombiner3D/CSGBox3D8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/CSGBox3D8/Area3D"]
+shape = SubResource("BoxShape3D_0wfyh")
+
 [node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8829, 204.135, -44.8901)
 size = Vector3(16.3477, 1, 6)
@@ -79,5 +78,22 @@ size = Vector3(6, 1, 19.4556)
 transform = Transform3D(-5.82809e-08, -0.750515, 0.660854, -1.24922e-08, 0.660854, 0.750515, -1, 0, 0, -81.3401, 91.0442, -45.1444)
 size = Vector3(6, 1, 169.551)
 
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4429, 4.23724, -18.46)
+size = Vector3(21.1035, 9.47449, 17.3792)
+
+[node name="Area3D" type="Area3D" parent="CSGCombiner3D/CSGBox3D13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/CSGBox3D13/Area3D"]
+shape = SubResource("BoxShape3D_o5qli")
+
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(-4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, -8.1828, 212.272, -45.8004)
+transform = Transform3D(-4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, -8.1828, 3.87404, -45.8004)
+
+[node name="PistolEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.363, 0.00335104, -45.5853)
+target = NodePath("../Player")
+
+[node name="PistolEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_0wfyh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -79.1422, 0.00541948, -42.0708)
+target = NodePath("../Player")

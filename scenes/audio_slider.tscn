@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctpfy1wfhqeim"]
+
+[ext_resource type="Script" uid="uid://b7kqv83a8qsph" path="res://scripts/audio_slider.gd" id="1_ba8o3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ba8o3"]
+bg_color = Color(0.86321, 0.635566, 0.926648, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.672437, 0.391927, 0.649086, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkcuc"]
+bg_color = Color(0.843137, 0.776471, 0.145098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21a2c"]
+bg_color = Color(0.843137, 0.776471, 0.145098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[node name="AudioSlider" type="HSlider"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/center_grabber = 0
+theme_override_styles/slider = SubResource("StyleBoxFlat_ba8o3")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_jkcuc")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_21a2c")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("1_ba8o3")

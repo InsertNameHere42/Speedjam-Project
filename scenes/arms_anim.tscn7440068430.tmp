@@ -1,0 +1,302 @@
+[gd_scene load_steps=50 format=3 uid="uid://bf4p6582qmwho"]
+
+[ext_resource type="PackedScene" uid="uid://c4f2va1ntghyw" path="res://assets/ArmsAnim.blend" id="1_71xgt"]
+[ext_resource type="Script" uid="uid://bslpfltv0grt1" path="res://scripts/arms.gd" id="2_a1r1f"]
+[ext_resource type="Animation" uid="uid://dka8f6fo7ybgl" path="res://saveToFileAnims/BaseAnim.res" id="2_eoa33"]
+[ext_resource type="Animation" uid="uid://umxtxssy3lgv" path="res://saveToFileAnims/ChargeActiveAnim.res" id="3_a1r1f"]
+[ext_resource type="Animation" uid="uid://b4fu78uk801om" path="res://saveToFileAnims/chargeActiveStartAnim.res" id="4_ynv56"]
+[ext_resource type="Animation" uid="uid://bc83oo4w8k8dk" path="res://saveToFileAnims/chargeHitAnim.res" id="5_qqqyn"]
+[ext_resource type="Animation" uid="uid://0go2xf111iso" path="res://saveToFileAnims/chargeHoldAnim.res" id="6_tb1bu"]
+[ext_resource type="Animation" uid="uid://pwayxrfbex6y" path="res://saveToFileAnims/downAnim.res" id="7_yjh82"]
+[ext_resource type="Animation" uid="uid://dpr5ker7lw2xy" path="res://saveToFileAnims/IdleAnim.res" id="8_myom7"]
+[ext_resource type="Animation" uid="uid://baka8gdt5xmlb" path="res://saveToFileAnims/jumpAnim.res" id="9_toq6o"]
+[ext_resource type="Animation" uid="uid://b7q8d4vgcsv64" path="res://saveToFileAnims/punchAnim.res" id="10_fnnn1"]
+[ext_resource type="Animation" uid="uid://w0lrd88kn5jx" path="res://saveToFileAnims/WindupAnim.res" id="11_3n0uj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71xgt"]
+size = Vector3(5.05176, 8.80235, 2.1922)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eoa33"]
+size = Vector3(5.92969, 3.82861, 8.87878)
+
+[sub_resource type="Animation" id="Animation_eoa33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Human FPV/Hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChargeBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1r1f"]
+_data = {
+&"RESET": SubResource("Animation_eoa33")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ynv56"]
+_data = {
+&"BaseAnim": ExtResource("2_eoa33"),
+&"ChargeActiveAnim": ExtResource("3_a1r1f"),
+&"IdleAnim": ExtResource("8_myom7"),
+&"WindupAnim": ExtResource("11_3n0uj"),
+&"chargeActiveStartAnim": ExtResource("4_ynv56"),
+&"chargeHitAnim": ExtResource("5_qqqyn"),
+&"chargeHoldAnim": ExtResource("6_tb1bu"),
+&"downAnim": ExtResource("7_yjh82"),
+&"jumpAnim": ExtResource("9_toq6o"),
+&"punchAnim": ExtResource("10_fnnn1")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yjh82"]
+animation = &"Anims/chargeHoldAnim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_myom7"]
+animation = &"Anims/chargeActiveStartAnim"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_toq6o"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fnnn1"]
+graph_offset = Vector2(-378.315, 69.3464)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_myom7")
+nodes/Animation/position = Vector2(-180, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_toq6o")
+nodes/TimeScale/position = Vector2(141.57, 146.41)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_toq6o"]
+animation = &"Anims/chargeHitAnim"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fnnn1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3n0uj"]
+graph_offset = Vector2(-217, 15)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_toq6o")
+nodes/Animation/position = Vector2(-160, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_fnnn1")
+nodes/TimeScale/position = Vector2(135.52, 135.52)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eoa33"]
+animation = &"Anims/downAnim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a1r1f"]
+animation = &"Anims/jumpAnim"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_a1r1f"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_eoa33")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_a1r1f")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tb1bu"]
+animation = &"Anims/punchAnim"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_yjh82"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_myom7"]
+graph_offset = Vector2(-283.198, 70.8512)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_tb1bu")
+nodes/Animation/position = Vector2(-160, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_yjh82")
+nodes/TimeScale/position = Vector2(133, 113)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ynv56"]
+animation = &"Anims/IdleAnim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3n0uj"]
+animation = &"Anims/WindupAnim"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wqnrh"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_05j1f"]
+graph_offset = Vector2(-346, 127)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3n0uj")
+nodes/Animation/position = Vector2(-160, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_wqnrh")
+nodes/TimeScale/position = Vector2(137.94, 189.97)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_toq6o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fnnn1"]
+advance_mode = 2
+advance_condition = &"isSliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3n0uj"]
+advance_mode = 2
+advance_condition = &"notSliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wqnrh"]
+advance_mode = 2
+advance_condition = &"inputPunch"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05j1f"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awbvf"]
+advance_mode = 2
+advance_condition = &"inputPunch"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gq3b5"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ggd4x"]
+advance_mode = 2
+advance_condition = &"inputCharge"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7kfbc"]
+advance_mode = 2
+advance_condition = &"inputCharge"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0vf1x"]
+advance_mode = 2
+advance_condition = &"chargeRelease"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_btilb"]
+advance_mode = 2
+advance_condition = &"chargeTimeout"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uasx"]
+advance_mode = 2
+advance_condition = &"chargeHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v2ofo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eoa33"]
+advance_mode = 2
+advance_condition = &"chargeRelease"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qqqyn"]
+states/Anims_chargeHoldAnim/node = SubResource("AnimationNodeAnimation_yjh82")
+states/Anims_chargeHoldAnim/position = Vector2(531, 18)
+states/ChargeActive/node = SubResource("AnimationNodeBlendTree_fnnn1")
+states/ChargeActive/position = Vector2(520, -61)
+states/ChargeHit/node = SubResource("AnimationNodeBlendTree_3n0uj")
+states/ChargeHit/position = Vector2(516, -135)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_a1r1f")
+states/Idle/position = Vector2(363, 100)
+states/Punch/node = SubResource("AnimationNodeBlendTree_myom7")
+states/Punch/position = Vector2(363, 18)
+states/Sliding/node = SubResource("AnimationNodeAnimation_ynv56")
+states/Sliding/position = Vector2(363, 184)
+states/Windup/node = SubResource("AnimationNodeBlendTree_05j1f")
+states/Windup/position = Vector2(520, 79)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_toq6o"), "Idle", "Sliding", SubResource("AnimationNodeStateMachineTransition_fnnn1"), "Sliding", "Idle", SubResource("AnimationNodeStateMachineTransition_3n0uj"), "Idle", "Punch", SubResource("AnimationNodeStateMachineTransition_wqnrh"), "Punch", "Idle", SubResource("AnimationNodeStateMachineTransition_05j1f"), "Sliding", "Punch", SubResource("AnimationNodeStateMachineTransition_awbvf"), "Windup", "Anims_chargeHoldAnim", SubResource("AnimationNodeStateMachineTransition_gq3b5"), "Idle", "Windup", SubResource("AnimationNodeStateMachineTransition_ggd4x"), "Sliding", "Windup", SubResource("AnimationNodeStateMachineTransition_7kfbc"), "Anims_chargeHoldAnim", "ChargeActive", SubResource("AnimationNodeStateMachineTransition_0vf1x"), "ChargeActive", "Idle", SubResource("AnimationNodeStateMachineTransition_btilb"), "ChargeActive", "ChargeHit", SubResource("AnimationNodeStateMachineTransition_0uasx"), "ChargeHit", "Idle", SubResource("AnimationNodeStateMachineTransition_v2ofo"), "Windup", "ChargeActive", SubResource("AnimationNodeStateMachineTransition_eoa33")]
+graph_offset = Vector2(1, -127)
+
+[node name="ArmsAnim" instance=ExtResource("1_71xgt")]
+script = ExtResource("2_a1r1f")
+
+[node name="Skeleton3D" parent="Human FPV" index="0"]
+bones/1/rotation = Quaternion(-0.695412, 0.115686, 0.179198, 0.686227)
+bones/2/rotation = Quaternion(1.23198e-06, 5.42698e-08, 0.70748, 0.706733)
+bones/3/rotation = Quaternion(0.118598, -0.00495221, 0.0145657, 0.992823)
+bones/4/rotation = Quaternion(-0.408755, 0.0208494, -0.12637, 0.903612)
+bones/5/rotation = Quaternion(-0.487338, -0.0264536, 0.0136027, 0.872707)
+bones/6/rotation = Quaternion(-0.785407, 0.0244027, -0.0203097, 0.618165)
+bones/7/rotation = Quaternion(-0.464082, 0.00148688, -0.0292715, 0.885307)
+bones/8/rotation = Quaternion(-0.416543, 0.00447995, -0.027496, 0.908689)
+bones/9/rotation = Quaternion(-0.692884, 0.0122715, -0.00165148, 0.720943)
+bones/10/rotation = Quaternion(-0.362955, -0.0585415, 0.0345105, 0.929326)
+bones/11/rotation = Quaternion(-0.559416, 0.0670845, 0.0665575, 0.823483)
+bones/12/rotation = Quaternion(-0.672845, 0.257818, 0.0739547, 0.689449)
+bones/13/rotation = Quaternion(-0.380123, -0.00242704, 0.0862522, 0.920903)
+bones/14/rotation = Quaternion(-0.522863, 0.0401611, -0.0727649, 0.848355)
+bones/15/rotation = Quaternion(-0.649362, 0.0890852, -0.0611266, 0.752766)
+bones/16/rotation = Quaternion(-0.611798, -0.329146, 0.515991, 0.501118)
+bones/17/rotation = Quaternion(0.175956, 0.259857, -0.136117, 0.939673)
+bones/18/rotation = Quaternion(0.394815, 0.141802, -0.177046, 0.890319)
+bones/19/rotation = Quaternion(-0.131675, 0.697456, 0.70321, 0.0413769)
+bones/20/position = Vector3(-0.205225, 2.76012, -0.124396)
+bones/20/rotation = Quaternion(0.121475, 0.0449895, -0.715107, 0.686908)
+bones/21/rotation = Quaternion(0.00817413, -0.00267916, 0.07844, 0.996882)
+bones/22/position = Vector3(-0.326077, 0.799438, 0.0773425)
+bones/22/rotation = Quaternion(-0.029537, -0.0238248, 0.17517, 0.983807)
+bones/23/rotation = Quaternion(-0.078014, 0.00313471, -0.0400273, 0.996144)
+bones/24/rotation = Quaternion(-0.0853685, -0.000281753, -0.00624162, 0.99633)
+bones/25/position = Vector3(-0.0940933, 0.860469, 0.0806291)
+bones/25/rotation = Quaternion(0.0294318, -0.0186973, 0.0710474, 0.996863)
+bones/26/rotation = Quaternion(-0.111511, 0.000719866, -0.00641566, 0.993742)
+bones/27/rotation = Quaternion(-0.245764, -0.000485225, 0.00245948, 0.969326)
+bones/28/position = Vector3(0.09752, 0.852033, 0.0688213)
+bones/28/rotation = Quaternion(0.14332, 0.0165273, -0.0544543, 0.988039)
+bones/29/rotation = Quaternion(-0.200158, -0.000866818, 0.00427963, 0.979754)
+bones/30/rotation = Quaternion(-0.31703, -0.000785533, -0.00563997, 0.948399)
+bones/31/position = Vector3(0.327643, 0.82981, 0.045415)
+bones/31/rotation = Quaternion(0.0739467, 0.0342695, -0.118727, 0.989576)
+bones/32/rotation = Quaternion(-0.155761, -0.000737746, 0.00470437, 0.987783)
+bones/33/rotation = Quaternion(-0.113204, 0.000563545, -0.0124391, 0.993494)
+bones/37/position = Vector3(1.94766, 0.164191, -2.14583)
+bones/38/position = Vector3(-4.63908, -0.188734, -2.32586)
+bones/38/rotation = Quaternion(-0.356018, 0.669, 0.534096, 0.374742)
+bones/39/position = Vector3(1.38423, 0.331757, 3.8314)
+bones/40/position = Vector3(-4.02115, 0.0160919, 2.81582)
+bones/40/rotation = Quaternion(-0.542547, 0.512128, 0.399882, 0.532413)
+
+[node name="Hitbox" type="Area3D" parent="Human FPV" index="1"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Human FPV/Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5.77338, 6.37122)
+shape = SubResource("BoxShape3D_71xgt")
+disabled = true
+
+[node name="ChargeBox" type="Area3D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeBox" index="0"]
+transform = Transform3D(0.19971, 0, 0, 0, 0.19971, 0, 0, 0, 0.19971, 0.00511509, 0.959419, 1.30236)
+shape = SubResource("BoxShape3D_eoa33")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_a1r1f"),
+&"Anims": SubResource("AnimationLibrary_ynv56")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+tree_root = SubResource("AnimationNodeStateMachine_qqqyn")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/chargeHit = false
+parameters/conditions/chargeRelease = false
+parameters/conditions/chargeTimeout = false
+parameters/conditions/inputCharge = false
+parameters/conditions/inputPunch = false
+parameters/conditions/isSliding = false
+parameters/conditions/notSliding = false
+parameters/ChargeActive/TimeScale/scale = 3.0
+parameters/ChargeHit/TimeScale/scale = 1.0
+parameters/Idle/blend_position = -0.00149256
+parameters/Punch/TimeScale/scale = 2.0
+parameters/Windup/TimeScale/scale = 0.4
+
+[connection signal="area_entered" from="Human FPV/Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Human FPV/Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="ChargeBox" to="." method="_on_charge_box_area_entered"]

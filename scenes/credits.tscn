@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxp4kg1m2ddqr"]
+
+[ext_resource type="FontFile" uid="uid://k35kwvcbwer" path="res://assets/UI/High Speed.ttf" id="1_0bpdh"]
+[ext_resource type="Script" uid="uid://cb2i68hnjxh06" path="res://scripts/credits.gd" id="1_2ckv8"]
+[ext_resource type="PackedScene" uid="uid://dmyn5oj2bitw8" path="res://scenes/background_scene.tscn" id="2_0ctdu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ctdu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fbfq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gwij"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mah5v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kyhnv"]
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_2ckv8")
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Background Scene" parent="Background" instance=ExtResource("2_0ctdu")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.965926, 0.25, 0.0669873, 5.32754e-08, 0.258819, -0.965926, -0.258819, 0.933013, 0.25, 81.9953, -35.0706, 42.6418)
+fov = 90.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 160
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Credits" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.847059, 0.721569, 0.211765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0bpdh")
+theme_override_font_sizes/font_size = 64
+text = "Credits:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.847059, 0.721569, 0.211765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0bpdh")
+theme_override_font_sizes/font_size = 32
+text = "
+
+\"High Speed\" Font: 
+by Letterara
+
+Speed lines shader: 
+by axilirate
+
+Everything else:
+By insertnamehere35
+"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("1_0bpdh")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ctdu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2fbfq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8gwij")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mah5v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kyhnv")
+text = "Back to menu
+"
+
+[connection signal="pressed" from="Control/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,19 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://co6lfu66hvvmv"]
+[gd_scene load_steps=27 format=3 uid="uid://co6lfu66hvvmv"]
 
 [ext_resource type="Script" uid="uid://bq20pjofchayg" path="res://scripts/playerScript.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://ddhanv8qw4sy0" path="res://scripts/cameraShake.gd" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://blor2t218byla" path="res://scenes/speedlines.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bf4p6582qmwho" path="res://scenes/arms_anim.tscn" id="4_dqkch"]
+[ext_resource type="FontFile" uid="uid://k35kwvcbwer" path="res://assets/UI/High Speed.ttf" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://dcx353v44asdk" path="res://assets/Sounds/Punch.mp3" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://dtamvnvrbmdpk" path="res://assets/Sounds/ChargeHit.mp3" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://dmok0cyjiwnot" path="res://assets/Sounds/ChargeRelease.mp3" id="8_smehm"]
+[ext_resource type="AudioStream" uid="uid://8giic4g6oolw" path="res://assets/Sounds/Sliding.mp3" id="9_ur7pv"]
 
 [sub_resource type="Curve" id="Curve_qhqgy"]
 _limits = [0.0, 1.0, 0.0, 90.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(38.8636, 0.505618), 0.0050223, 0.0050223, 0, 0, Vector2(65.9659, 0.696629), 0.00732418, 0.00732418, 0, 0, Vector2(90, 1), 0.0, 0.0, 0, 0]
 point_count = 4
-
-[sub_resource type="Curve" id="Curve_3vyb7"]
-_limits = [10.0, 30.0, 0.0, 120.0]
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(36, 20), 0.0, 0.0, 0, 0, Vector2(120, 30), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="Curve" id="Curve_g2els"]
 _limits = [85.0, 110.0, 0.0, 40.0]
@@ -22,12 +22,12 @@ point_count = 5
 
 [sub_resource type="Curve" id="Curve_dqkch"]
 _limits = [0.0, 0.15, 0.0, 40.0]
-_data = [Vector2(21.5909, 0), 0.0, 0.0, 0, 0, Vector2(26.3636, 0.0808989), 0.00359551, 0.00359551, 0, 0, Vector2(40, 0.0994382), 0.0, 0.0, 0, 0]
+_data = [Vector2(21.1364, 0), 0.0, 0.0, 0, 0, Vector2(26.3636, 0.0808989), 0.00359551, 0.00359551, 0, 0, Vector2(40, 0.0994382), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_qlg0r"]
-_limits = [0.0, 0.5, 0.0, 40.0]
-_data = [Vector2(14.878, 0), 0.0, 0.0, 0, 0, Vector2(40, 0.5), 0.0, 0.0, 0, 0]
+_limits = [0.0, 0.5, 0.0, 60.0]
+_data = [Vector2(6.95122, 0), 0.0, 0.0118884, 0, 0, Vector2(60, 0.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_tuyoq"]
@@ -39,7 +39,47 @@ point_count = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhqgy"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ur7pv"]
+lifetime_randomness = 0.3
+particle_flag_align_y = true
+angle_min = -90.0
+angle_max = 90.0
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur7pv"]
+albedo_color = Color(0.917647, 0.415686, 0.741176, 1)
+emission_enabled = true
+emission = Color(0.917647, 0.415686, 0.741176, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y4r1p"]
+material = SubResource("StandardMaterial3D_ur7pv")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4r1p"]
+albedo_color = Color(0.843137, 0.776471, 0.145098, 1)
+emission_enabled = true
+emission = Color(0.843137, 0.776471, 0.145098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d2wvv"]
+material = SubResource("StandardMaterial3D_y4r1p")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qlg0r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuyoq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjrip"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_smehm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ur7pv"]
+
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 5
 floor_stop_on_slope = false
 floor_max_angle = 1.48353
 floor_snap_length = 1.0
@@ -58,7 +98,7 @@ inputBack = "back"
 inputSlide = "slide"
 inputPunch = "punch"
 inputCharge = "charge"
-chargeVelocity = SubResource("Curve_3vyb7")
+maxChargeTime = 1.5
 dynamicFOV = SubResource("Curve_g2els")
 speedToShake = SubResource("Curve_dqkch")
 headbobFrequency = 1.0
@@ -84,9 +124,150 @@ script = ExtResource("2_g2els")
 [node name="ArmsAnim" parent="Head/Camera3D" instance=ExtResource("4_dqkch")]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, -1.894, 0.3)
 
+[node name="PurpParticles" type="GPUParticles3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0467442, 0.0914212, -1.11354)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 24
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ur7pv")
+draw_pass_1 = SubResource("BoxMesh_y4r1p")
+
+[node name="YellowParticles" type="GPUParticles3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0467442, 0.0914212, -1.11354)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 24
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_ur7pv")
+draw_pass_1 = SubResource("BoxMesh_d2wvv")
+
 [node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="."]
+wait_time = 0.7
 one_shot = true
 
 [node name="Speedlines" parent="." instance=ExtResource("3_qhqgy")]
 
+[node name="Labels" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Labels"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Labels/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="Timers" type="VBoxContainer" parent="Labels/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="LevelTimeTag" type="Label" parent="Labels/Control/MarginContainer/Timers"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845186, 0.722007, 0.211761, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 16
+text = "Level Time:"
+
+[node name="LevelTime" type="Label" parent="Labels/Control/MarginContainer/Timers"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845186, 0.722007, 0.211761, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 16
+
+[node name="OverallTimeTag" type="Label" parent="Labels/Control/MarginContainer/Timers"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845186, 0.722007, 0.211761, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 16
+text = "Overall Time:"
+
+[node name="OverallTime" type="Label" parent="Labels/Control/MarginContainer/Timers"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845186, 0.722007, 0.211761, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 16
+
+[node name="Other" type="VBoxContainer" parent="Labels/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TargetsLeftTag" type="Label" parent="Labels/Control/MarginContainer/Other"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845186, 0.722007, 0.211761, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 16
+text = "targets left:"
+
+[node name="TargetsLeft" type="Label" parent="Labels/Control/MarginContainer/Other"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.845186, 0.722007, 0.211761, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 16
+text = "
+"
+
+[node name="BackButton" type="Button" parent="Labels/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_fonts/font = ExtResource("5_qlg0r")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qlg0r")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tuyoq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fjrip")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_smehm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ur7pv")
+text = "Exit to menu?
+"
+
+[node name="PunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tuyoq")
+pitch_scale = 0.7
+bus = &"SFX"
+
+[node name="ChargeHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fjrip")
+volume_db = -11.283
+pitch_scale = 0.73
+bus = &"SFX"
+
+[node name="ChargeRelease" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_smehm")
+pitch_scale = 1.4
+
+[node name="Sliding" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ur7pv")
+volume_db = -10.0
+pitch_scale = 1.43
+bus = &"SFX"
+
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="pressed" from="Labels/Control/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://bes50tggpyryt"]
+
+[ext_resource type="Script" uid="uid://bfnrolcsdqyl" path="res://scripts/end_screen.gd" id="1_6e1uj"]
+[ext_resource type="FontFile" uid="uid://k35kwvcbwer" path="res://assets/UI/High Speed.ttf" id="1_kq7ac"]
+[ext_resource type="PackedScene" uid="uid://dmyn5oj2bitw8" path="res://scenes/background_scene.tscn" id="2_jc7ji"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jc7ji"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_87vmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g44xs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vj8vg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plosh"]
+
+[node name="EndScreen" type="CanvasLayer"]
+script = ExtResource("1_6e1uj")
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Background Scene" parent="Background" instance=ExtResource("2_jc7ji")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.25, 0.258819, -0.933013, -0.0669873, 0.965926, 0.25, 0.965926, 7.71341e-09, 0.258819, 147.907, 22.0793, 3.32691)
+fov = 90.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 240
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ThankYou" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.482353, 0.917647, 1)
+theme_override_fonts/font = ExtResource("1_kq7ac")
+theme_override_font_sizes/font_size = 64
+text = "THANK YOU FOR PLAYING!!!"
+
+[node name="FinalTimeTag" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.482353, 0.917647, 1)
+theme_override_fonts/font = ExtResource("1_kq7ac")
+theme_override_font_sizes/font_size = 48
+text = "Final Time:"
+
+[node name="FinalTime" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.847059, 0.721569, 0.211765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_kq7ac")
+theme_override_font_sizes/font_size = 92
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LineEdit" type="LineEdit" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.917647, 0.415686, 0.741176, 1)
+theme_override_fonts/font = ExtResource("1_kq7ac")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter Name: "
+
+[node name="SubmitButton" type="Button" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_hover_pressed_color = Color(0.843137, 0.776471, 0.145098, 1)
+theme_override_colors/font_hover_color = Color(0.843137, 0.552941, 0.145098, 1)
+theme_override_colors/font_color = Color(0.916159, 0.417271, 0.742034, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_kq7ac")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jc7ji")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_87vmq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g44xs")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vj8vg")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_plosh")
+text = "Submit Time"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer2/SubmitButton" to="." method="_on_submit_button_pressed"]
